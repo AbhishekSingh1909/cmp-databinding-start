@@ -15,6 +15,7 @@ export class CookpitComponent {
   newServerContent = '';
 
   onAddServer() {
+    // emit data (pass data) to app componenet 
     this.serverCreated.emit({serverName : this.newServerName, serverContent : this.newServerContent});
   }
 
