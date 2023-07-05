@@ -26,7 +26,7 @@ export class CookpitComponent {
    this.serverCreated.emit({serverName : serverNameInput.value, serverContent : this.serverContentInput.nativeElement.value});
   }
 
-  onAddBlueprint() {
-    this.blueprintCreated.emit({serverName : this.newServerName, serverContent : this.serverContentInput.nativeElement.value});
+  onAddBlueprint(serverNameInput : HTMLInputElement) {
+    this.blueprintCreated.emit({serverName : serverNameInput.value, serverContent : this.serverContentInput.nativeElement.value});
   }
 }
