@@ -1,4 +1,4 @@
-import { Component ,Input} from '@angular/core';
+import { Component ,Input, ViewEncapsulation} from '@angular/core';
 
 export interface server{
   type : string,
@@ -9,7 +9,8 @@ export interface server{
 @Component({
   selector: 'app-server-element',
   templateUrl: './server-element.component.html',
-  styleUrls: ['./server-element.component.css']
+  styleUrls: ['./server-element.component.css'],
+  encapsulation: ViewEncapsulation.Emulated //None,Native
 })
 export class ServerElementComponent {
   // to get data from parent component in this case app.component.ts

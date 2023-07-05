@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { server } from '../server-element/server-element.component';
 
 
@@ -12,14 +12,21 @@ export class CookpitComponent {
  @Output() serverCreated = new EventEmitter<{ serverName :string, serverContent :string}>();
  @Output() blueprintCreated = new EventEmitter<{ serverName :string, serverContent :string}> ();
   newServerName = '';
-  newServerContent = '';
+  newServerContent = ''; 
+  // pass local reference from html to type script
+  @ViewChild('serverContentInput',{ read: ElementRef,static : true})
+  public serverContentInput : ElementRef;
 
-  onAddServer() {
+  onAddServer(serverNameInput : HTMLInputElement) {
+    console.log(serverNameInput);
+    console.log(this.serverContentInput);
     // emit data (pass data) to app componenet 
-    this.serverCreated.emit({serverName : this.newServerName, serverContent : this.newServerContent});
+   // this.serverCreated.emit({serverName : this.newServerName, serverContent : this.newServerContent});
+   //use of view child
+   this.serverCreated.emit({serverName : serverNameInput.value, serverContent : this.serverContentInput.nativeElement.value});
   }
 
   onAddBlueprint() {
-    this.blueprintCreated.emit({serverName : this.newServerName, serverContent : this.newServerContent});
+    this.blueprintCreated.emit({serverName : this.newServerName, serverContent : this.serverContentInput.nativeElement.value});
   }
 }
